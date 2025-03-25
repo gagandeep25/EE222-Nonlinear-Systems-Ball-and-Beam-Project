@@ -3,7 +3,7 @@ if nargin < 5
     video = false;
 end
 if nargin < 6
-    play_speed = 1.0;
+    play_speed = 1;
 end
 if nargin < 7
     title_str = ' ';
