@@ -4,8 +4,8 @@ classdef studentControllerInterface < matlab.System
         % For more information of the supported data type, see
         % https://www.mathworks.com/help/simulink/ug/data-types-supported-by-simulink.html
         t_prev = -1;
-        %x_hat_prev = [-0.19; 0.00; 0; 0];
-        x_hat_prev = [-0.05; 0.00; 0; 0];
+        x_hat_prev = [-0.19; 0.00; 0; 0];
+        %x_hat_prev = [-0.05; 0.00; 0; 0];
         u_prev = 0;
         theta_d = 0;
         extra_dummy1 = 0;
@@ -47,21 +47,7 @@ classdef studentControllerInterface < matlab.System
             x_hat = luenberger_observer(t-t_prev, x_hat_prev, y, u_prev);
 
             theta_d = asin((7 * L / (5 * g * r_arm)) * a_ball_ref);
-            u_eq = K * theta_d;  
-            %u_eq = 0;
-
-            % Compute A and B matrices at equilibrium
-            A = compute_jacobian_A(x_hat);
-            B = compute_jacobian_B();
-
-            % Solve LQR
-            Q = diag([60, 0.01, 0.01, 1]);
-            R = 1;
-            Klqr = lqr(A, B, Q, R);
-
-            %Klqr = [10, 25.1525, 13.0233, 2.6315];
-            % Klqr = [10, 45, 11, 2.3]; % sine cost: 0.97, square -- 4.4
-            %Klqr = [10, 45, 11, 2.3];
+            u_eq = 0;
 
             %k_p = 3;
             %theta_d = - k_p * (p_ball - p_ball_ref);
@@ -70,10 +56,33 @@ classdef studentControllerInterface < matlab.System
             theta_d = min(theta_d, theta_saturation);
             theta_d = max(theta_d, -theta_saturation);
 
-           
             x_ref = [p_ball_ref; v_ball_ref; theta_d; 0];
 
+
+            % Compute A and B matrices at equilibrium
+            A = compute_jacobian_A(x_ref);
+            B = compute_jacobian_B();
+
+            % Solve LQR
+            Q = diag([60, 0.01, 0.01, 1]); % sine -- 0.95, square -- 4
+            % Q = diag([1200, 10, 10, 10]);
+            R = 0.1;
+            Klqr = lqr(A, B, Q, R);
+            
+
+            %Klqr = [10, 25.1525, 13.0233, 2.6315];
+            % Klqr = [10, 45, 11, 2.3]; % sine cost: 0.97, square -- 4.4
+            %Klqr = [10, 45, 11, 2.3];
+
+            
             V_servo = u_eq - Klqr  * (x_hat - x_ref);
+            %% nonlinear input control ( works but at a higher energy cost)
+            % V_servo = 1*sign(u_eq - Klqr  * (x_hat - x_ref));
+
+            %% saturate V_servo
+            lb = -0.4;
+            ub = 0.4;
+             V_servo = min(max(V_servo, lb), ub);
 
 
             % % Decide desired servo angle based on simple proportional feedback.
