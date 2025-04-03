@@ -23,9 +23,9 @@ classdef studentControllerInterfacePID < matlab.System
             % k_p: Proportional gain (increases response speed but too high may lead to instability). 15
             % k_i: Integral gain (reduces steady-state error; too high may cause overshoot). 0.75
             % k_d: Derivative gain (dampens the response; too high may lead to noise sensitivity). 40
-            k_p = 80;   % Proportional gain (ADJUST) 60
-            k_i = 1;   % Integral gain (ADJUST) 
-            k_d = 40; % Derivative gain (ADJUST)
+            k_p = 7;   % Proportional gain (ADJUST) 80, 60
+            k_i = 0.01;   % Integral gain (ADJUST) 
+            k_d = 8; % Derivative gain (ADJUST)40
             
             % Compute the time step (dt) and handle the first iteration.
             if obj.t_prev < 0
@@ -52,7 +52,7 @@ classdef studentControllerInterfacePID < matlab.System
             % Make sure that the desired servo angle does not exceed the physical
             % limit. This part of code is not necessary but highly recommended
             % because it addresses the actual physical limit of the servo motor.
-            theta_saturation = 45 * pi / 180;    
+            theta_saturation = 55 * pi / 180;    
             theta_d = min(theta_d, theta_saturation);
             theta_d = max(theta_d, -theta_saturation);
             
@@ -60,9 +60,11 @@ classdef studentControllerInterfacePID < matlab.System
             % Simple position control to control servo angle to the desired
             % position.
             % Adjust the servo gain (k_servo) to scale the voltage command appropriately.12
-            k_servo = 18;  % Servo voltage gain (ADJUST) 15
+            k_servo = 2;  % Servo voltage gain (ADJUST) 15
             V_servo = k_servo * (theta_d - theta);
-            
+            lb = -10;
+            ub = 10;
+            V_servo = min(max(V_servo, lb), ub);
             % Update properties for the next iteration.
             obj.t_prev = t;
             obj.theta_d = theta_d;
