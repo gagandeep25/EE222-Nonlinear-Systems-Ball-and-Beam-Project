@@ -24,7 +24,6 @@ function x_hat = luenberger_observer(delta_t, x_hat_prev, y, u)
 
     LO = zeros(4,2); %Luenberger gain
     LO = Ll;
-    %LO = [[56.032, -5.105]; [766.969, -147.89]; [-9.68, 53.967]; [-152.34, 707.99]];
     %LO =[[  25.1320,  -0.5331]; [ 151.9416,  -6.4568]; [  -1.2948, -10.1320]; [  32.6879, 619.3871]];
     C = [[1, 0, 0, 0]; [0, 0, 1, 0]]; %selects position and theta
 
