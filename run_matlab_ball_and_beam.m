@@ -3,7 +3,7 @@ clear all
 
 %% General Settings.
 % Initial state.
-x0 = [-0.19; 0.00; 0; 0];
+x0 = [-0.19; 0.00; 0.1; 0];
 %x0 = [-0.05; 0.00; 0; 0];
 t0 = 0;
 % Simulation time.
@@ -19,7 +19,7 @@ plot_animation = false;
 % save animation to video if true.
 save_video = false;
 
-% controller_handle = studentControllerInterfacePID();
+%controller_handle = studentControllerInterfacePID();
 controller_handle = studentControllerInterface();
 u_saturation = 10;
 

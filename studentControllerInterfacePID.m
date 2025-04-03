@@ -3,20 +3,31 @@ classdef studentControllerInterfacePID < matlab.System
     properties (Access = private)
         % Existing properties
         t_prev = -1;
+        x_hat_prev = [-0.19; 0.00; 0.1; 0];
         theta_d = 0;
         extra_dummy1 = 0;
         extra_dummy2 = 0;
         % New properties for PID control
         e_prev = 0;
         e_integral = 0;
+        u_prev = 0;
     end
     methods(Access = protected)
         function V_servo = stepImpl(obj, t, p_ball, theta)
             % Get the reference trajectory at time t.
             [p_ball_ref, v_ball_ref, a_ball_ref] = get_ref_traj(t);
+             y = [p_ball; theta];
+            
+
+            x_op = [p_ball_ref, v_ball_ref, 0, 0];
+
+            % state_estimate -- luenberger observer
+            x_hat = luenberger_observer(t-obj.t_prev, obj.x_hat_prev, y, obj.u_prev, x_op);
+            error = (x_hat(1) - p_ball_ref) + 0.5*(x_hat(2) - v_ball_ref); 
+            obj.x_hat_prev = x_hat;
             
             % Compute the error between the actual ball position and its reference.
-            error = p_ball - p_ball_ref;
+            % error = p_ball - p_ball_ref;
             
             %% PID Gains
             % Adjust these gains to tune the controller behavior:
@@ -69,6 +80,7 @@ classdef studentControllerInterfacePID < matlab.System
             obj.t_prev = t;
             obj.theta_d = theta_d;
             obj.e_prev = error;
+            obj.u_prev = V_servo;
         end
     end
     

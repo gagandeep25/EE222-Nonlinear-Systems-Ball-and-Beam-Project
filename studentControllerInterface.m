@@ -4,7 +4,7 @@ classdef studentControllerInterface < matlab.System
         % For more information of the supported data type, see
         % https://www.mathworks.com/help/simulink/ug/data-types-supported-by-simulink.html
         t_prev = -1;
-        x_hat_prev = [-0.19; 0.00; 0; 0];
+        x_hat_prev = [-0.19; 0.00; 0.1; 0];
         %x_hat_prev = [-0.05; 0.00; 0; 0];
         u_prev = 0;
         theta_d = 0;
@@ -42,9 +42,10 @@ classdef studentControllerInterface < matlab.System
                       
             % Extract reference trajectory at the current timestep.
             [p_ball_ref, v_ball_ref, a_ball_ref] = get_ref_traj(t);
+            x_op = [p_ball_ref, v_ball_ref, 0, 0];
 
             % state_estimate -- luenberger observer
-            x_hat = luenberger_observer(t-t_prev, x_hat_prev, y, u_prev);
+            x_hat = luenberger_observer(t-t_prev, x_hat_prev, y, u_prev, x_op);
 
             theta_d = asin((7 * L / (5 * g * r_arm)) * a_ball_ref);
             u_eq = 0;
