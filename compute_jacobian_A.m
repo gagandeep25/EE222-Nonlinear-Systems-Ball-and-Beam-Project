@@ -13,7 +13,7 @@ function A = compute_jacobian_A(x_hat)
     c = (5 / 7) * (r_arm / L)^2;
 
     A = [ 0, 1, 0, 0;
-          0, 0, a * cos(theta), -2 * b * dtheta * cos(theta)^2 + 2 * c * p_ball * dtheta * cos(theta)^2;
+          0, 0, a * cos(theta) + 2 * b * dtheta^2 * cos(theta) * sin(theta) - 2 * c * p_ball * cos(theta) * sin(theta), -2 * b * dtheta * cos(theta)^2 + 2 * c * p_ball * dtheta * cos(theta)^2;
           0, 0, 0, 1;
           0, 0, 0, -1/0.025];
 end

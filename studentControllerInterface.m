@@ -81,8 +81,8 @@ classdef studentControllerInterface < matlab.System
             % V_servo = 1*sign(u_eq - Klqr  * (x_hat - x_ref));
 
             %% saturate V_servo
-            lb = -0.4;
-            ub = 0.4;
+            lb = -0.4; % lb = -1 perform better for square
+            ub = 0.4; % ub = 1 perform better for square
              V_servo = min(max(V_servo, lb), ub);
 
 
