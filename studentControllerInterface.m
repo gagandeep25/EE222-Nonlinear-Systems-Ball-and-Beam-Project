@@ -4,7 +4,7 @@ classdef studentControllerInterface < matlab.System
         % For more information of the supported data type, see
         % https://www.mathworks.com/help/simulink/ug/data-types-supported-by-simulink.html
         t_prev = -1;
-        x_hat_prev = [-0.19; 0.00; 0.1; 0];
+        x_hat_prev = [-0.19; 0.00; 0.5; 0];
         %x_hat_prev = [-0.05; 0.00; 0; 0];
         u_prev = 0;
         theta_d = 0;
@@ -65,15 +65,16 @@ classdef studentControllerInterface < matlab.System
             B = compute_jacobian_B();
 
             % Solve LQR
-            Q = diag([350, 10, 0.01, 1]); % sine -- 0.95, square -- 4
+            Q = diag([450, 10, 0.01, 1]); % sine -- 0.95, square -- 4
             % Q = diag([1200, 10, 10, 10]);
             R = 0.1;
-            Klqr = lqr(A, B, Q, R)
+            Klqr = lqr(A, B, Q, R);
             
 
             %Klqr = [10, 25.1525, 13.0233, 2.6315];
             %Klqr = [10, 45, 11, 2.3]; % sine cost: 0.97, square -- 4.4
-            %Klqr = [24.5, 33.5, 9.6, 2.7]; % sine cost: 0.97, square -- 4.4
+            %Klqr = [24.5, 33.5, 9.6, 2.7]; % sine cost: 0.85, square --3.5
+            %Klqr = [67.08, 66.6, 13.534, 2.7]; % sine cost: , square -- 
             
 
             
@@ -82,8 +83,8 @@ classdef studentControllerInterface < matlab.System
             % V_servo = 1*sign(u_eq - Klqr  * (x_hat - x_ref));
 
             %% saturate V_servo
-            lb = -0.4; % lb = -1 perform better for square
-            ub = 0.4; % ub = 1 perform better for square
+            lb = -0.5; % lb = -1 perform better for square
+            ub = 0.5; % ub = 1 perform better for square
             V_servo = min(max(V_servo, lb), ub);
 
 
