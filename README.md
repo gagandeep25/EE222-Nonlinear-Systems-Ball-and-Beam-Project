@@ -1,3 +1,5 @@
+Results Summary:
+
 We have chosen to implement (1) a PID controller, (2) an LQR controller, and (3) a Luenberger Observer. 
 We report the trends for our simulation results below:
 
