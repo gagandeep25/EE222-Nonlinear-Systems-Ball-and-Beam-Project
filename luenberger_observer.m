@@ -1,13 +1,18 @@
-function x_hat = luenberger_observer(delta_t, x_hat_prev, y, u)
+function x_hat = luenberger_observer(delta_t, x_hat_prev, y, u, x_op)
     % x_hat_prev -- 4x1 vector
     % y -- 2x1 vector
-    x_op = [0; 0; 0; 0]; % [p_ball; v_ball; theta; dtheta]
+    % x_op = [0; 0; 0; 0]; % [p_ball; v_ball; theta; dtheta]
     u_op = 0; % Input at equilibrium
 
 
+    % Compute A and B matrices at equilibrium
+    A = compute_jacobian_A(x_op);
+    B = compute_jacobian_B();
+
+
     % Compute the Jacobians
-    [~, A] = jaccsd(@(x) ball_and_beam_dynamics(x, u_op), x_op);
-    [~, B] = jaccsd(@(u) ball_and_beam_dynamics(x_op, u), u_op);
+%     [~, A] = jaccsd(@(x) ball_and_beam_dynamics(0, x, u_op), x_op);
+%     [~, B] = jaccsd(@(u) ball_and_beam_dynamics(0, x_op, u), u_op);
 
     % Output equations (assuming we measure p_ball and theta)
     h = @(x) [x(1); x(3)];
@@ -16,7 +21,7 @@ function x_hat = luenberger_observer(delta_t, x_hat_prev, y, u)
     G = eye(4);
 
     % Covariance matrices
-    Q = eye(4) * 0.1; % Process noise covariance
+    Q = [10, 0, 0, 0; 0, 100, 0, 0; 0, 0, 10, 0; 0, 0, 0, 100];%eye(4) * 10; % Process noise covariance
     R = eye(2) * 0.1; % Measurement noise covariance
     P = eye(4);
     sys = ss(A,[B G],C,[D zeros(2, 4)]);

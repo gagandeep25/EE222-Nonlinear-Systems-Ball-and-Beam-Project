@@ -4,9 +4,10 @@ clear all
 %% General Settings.
 % Initial state.
 x0 = [-0.19; 0.00; 0; 0];
+%x0 = [-0.05; 0.00; 0; 0];
 t0 = 0;
 % Simulation time.
-T = 10;
+T = 100;
 % Sampling time of the controller
 dt = 0.01;
 % ode function to use.
@@ -14,10 +15,11 @@ ode_func = @ode45;
 % print log for each timestep if true.
 verbose = false;
 % plot animation if true.
-plot_animation = true;
+plot_animation = false;
 % save animation to video if true.
 save_video = false;
 
+%controller_handle = studentControllerInterfacePID();
 controller_handle = studentControllerInterface();
 u_saturation = 10;
 
@@ -80,7 +82,7 @@ thetas = xs(3, :);
 
 % Evaluate the score of the controller.
 score = get_controller_score(ts, ps, thetas, ref_ps, us);
-
+score
 %% Plots
 % Plot states.
 plot_states(ts, xs, ref_ps, ref_vs, theta_ds);
