@@ -21,15 +21,18 @@ function x_hat = luenberger_observer(delta_t, x_hat_prev, y, u, x_op)
     G = eye(4);
 
     % Covariance matrices
-    Q = [5, 0, 0, 0; 0, 100, 0, 0; 0, 0, 5, 0; 0, 0, 0, 100];%eye(4) * 10; % Process noise covariance
+    Q = [10, 0, 0, 0; 0, 100, 0, 0; 0, 0, 10, 0; 0, 0, 0, 100];%eye(4) * 10; % Process noise covariance
     R = eye(2) * 0.1; % Measurement noise covariance
     P = eye(4);
     sys = ss(A,[B G],C,[D zeros(2, 4)]);
     [kalmf,Ll,P] = kalman(sys,Q,R);
 
     LO = zeros(4,2); %Luenberger gain
-    LO = Ll;
-    %LO =[[  25.1320,  -0.5331]; [ 151.9416,  -6.4568]; [  -1.2948, -10.1320]; [  32.6879, 619.3871]];
+    % LO = Ll;
+    observer_poles = [-20, -25, -30, -35]; 
+    LO = [[ 50.0246,  -]; [ 151.9416,  -6.4568]; [  -1.2948, -10.1320]; [  32.6879, 619.3871]];
+
+    % LO =[[  25.1320,  -0.5331]; [ 151.9416,  -6.4568]; [  -1.2948, -10.1320]; [  32.6879, 619.3871]];
     C = [[1, 0, 0, 0]; [0, 0, 1, 0]]; %selects position and theta
 
     g = 9.81;

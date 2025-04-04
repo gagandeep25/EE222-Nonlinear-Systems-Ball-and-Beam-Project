@@ -83,7 +83,7 @@ classdef studentControllerInterface < matlab.System
             %% saturate V_servo
             lb = -0.4; % lb = -1 perform better for square
             ub = 0.4; % ub = 1 perform better for square
-             V_servo = min(max(V_servo, lb), ub);
+            V_servo = min(max(V_servo, lb), ub);
 
 
             % % Decide desired servo angle based on simple proportional feedback.
