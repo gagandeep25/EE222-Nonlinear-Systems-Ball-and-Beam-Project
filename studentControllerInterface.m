@@ -65,15 +65,16 @@ classdef studentControllerInterface < matlab.System
             B = compute_jacobian_B();
 
             % Solve LQR
-            Q = diag([60, 0.01, 0.01, 1]); % sine -- 0.95, square -- 4
+            Q = diag([350, 10, 0.01, 1]); % sine -- 0.95, square -- 4
             % Q = diag([1200, 10, 10, 10]);
             R = 0.1;
-            Klqr = lqr(A, B, Q, R);
+            Klqr = lqr(A, B, Q, R)
             
 
             %Klqr = [10, 25.1525, 13.0233, 2.6315];
-            % Klqr = [10, 45, 11, 2.3]; % sine cost: 0.97, square -- 4.4
-            %Klqr = [10, 45, 11, 2.3];
+            %Klqr = [10, 45, 11, 2.3]; % sine cost: 0.97, square -- 4.4
+            %Klqr = [24.5, 33.5, 9.6, 2.7]; % sine cost: 0.97, square -- 4.4
+            
 
             
             V_servo = u_eq - Klqr  * (x_hat - x_ref);
