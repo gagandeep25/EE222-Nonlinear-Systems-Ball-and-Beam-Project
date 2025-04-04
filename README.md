@@ -13,3 +13,8 @@ Currently, PID performs slightly better than LQR in terms of the score for both 
 Both PID and LQR tend to do better for sine waves compared to square waves in terms of both tracking performance and energy cost. 
 
 Screen recording of the controller animation:
+
+**LQR**
+
+https://github.com/user-attachments/assets/d2121167-b21d-4345-910c-66ce1deb9571
+
