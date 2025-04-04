@@ -24,7 +24,7 @@ legend('PID', 'LQR');
 % Add labels and title
 xlabel('Period (in seconds)');
 ylabel('Score');
-title('Score vs Period (Square Wave)');
+title('Score vs Period (Sine Wave)');
 grid on;
 
 % Create the plot
