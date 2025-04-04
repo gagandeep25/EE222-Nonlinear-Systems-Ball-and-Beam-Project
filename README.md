@@ -10,7 +10,7 @@ We report the trends for our simulation results below:
 
 ![scoreVsAmpl_square](https://github.com/user-attachments/assets/b4eed003-09c5-482c-8661-fbde873f97ea)
 
-![scoreVsPeriod_square](https://github.com/user-attachments/assets/d3be6811-ccaa-4e37-a629-558372ce1ba6)
+![scoreVsPeriod_square (1)](https://github.com/user-attachments/assets/5aac7589-ff38-490b-b7ad-650aea5de7cd)
 
 To better understand how each controller performs, we compare scores across various amplitudes and periods. First, we hold the period constant. For the sine wave, we see a nearly linear increase in score for LQR and a slightly worse than linear increase for PID. For the square wave, we see a more exponential increase, where the score starts to blow up for both LQR and PID. Next, we hold the amplitude constant. For the sine wave, we see a nearly linear decrease in score for PID and a slightly faster decrease for LQR. For the square wave, we see a fairly flat decline in score. However, the PID has overall higher scores. Overall, we see slightly better score trends for the LQR controller. 
 
