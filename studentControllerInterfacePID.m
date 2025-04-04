@@ -3,7 +3,7 @@ classdef studentControllerInterfacePID < matlab.System
     properties (Access = private)
         % Existing properties
         t_prev = -1;
-        x_hat_prev = [-0.19; 0.00; 0.1; 0];
+        x_hat_prev = [-0.19; 0.00; 0; 0];
         theta_d = 0;
         extra_dummy1 = 0;
         extra_dummy2 = 0;
