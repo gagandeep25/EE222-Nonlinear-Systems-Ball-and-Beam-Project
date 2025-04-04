@@ -6,7 +6,7 @@ We report the trends for our simulation results below:
 
 ![scoreVsAmpl_sine](https://github.com/user-attachments/assets/8ee3f203-004d-4170-8039-61973e94c6c0)
 
-![scoreVsPeriod_sine](https://github.com/user-attachments/assets/63705ac4-1c8c-49d1-a7b4-835512d31046)
+![scoreVsPeriod_square](https://github.com/user-attachments/assets/59e67a05-1710-4332-bf57-1dc0de7ea1ef)
 
 ![scoreVsAmpl_square](https://github.com/user-attachments/assets/b4eed003-09c5-482c-8661-fbde873f97ea)
 
