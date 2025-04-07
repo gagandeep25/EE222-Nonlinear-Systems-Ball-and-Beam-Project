@@ -9,7 +9,7 @@ function [p_ref, v_ref, a_ref] = get_ref_traj(t)
 %       a_ref: reference acceleration of the ball
     coder.allowpcode('plain');
     amplitude = 0.04; % m
-    period = 10; % sec
+    period = 25; % sec
     
     omega = 2 * pi / period;    
     

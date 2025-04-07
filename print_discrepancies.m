@@ -1,4 +1,4 @@
-classdef studentControllerInterface < matlab.System
+classdef print_discrepancies < matlab.System
     properties (Access = private)
         %% You can add values that you want to store and updae while running your controller.
         % For more information of the supported data type, see
@@ -16,7 +16,7 @@ classdef studentControllerInterface < matlab.System
         %    disp("You can use this function for initializaition.");
         % end
 
-        function V_servo = stepImpl(obj, t, p_ball, theta)
+        function observers = stepImpl(obj, t, p_ball, theta)
         % This is the main function called every iteration. You have to implement
         % the controller in this function, bu you are not allowed to
         % change the signature of this function. 
@@ -80,6 +80,7 @@ classdef studentControllerInterface < matlab.System
 
             
             V_servo = u_eq - Klqr  * (x_hat - x_ref);
+           
             %% nonlinear input control ( works but at a higher energy cost)
             % V_servo = 1*sign(u_eq - Klqr  * (x_hat - x_ref));
 
@@ -88,7 +89,7 @@ classdef studentControllerInterface < matlab.System
             ub = 3; % ub = 1 perform better for square
             V_servo = min(max(V_servo, lb), ub);
 
-
+            observers = x_hat(1) - p_ball;
             % % Decide desired servo angle based on simple proportional feedback.
             % k_p = 3;
             % theta_d = - k_p * (p_ball - p_ball_ref);

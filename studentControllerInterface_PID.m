@@ -1,5 +1,5 @@
 % PID CONTROLLER
-classdef studentControllerInterfacePID < matlab.System
+classdef studentControllerInterface < matlab.System
     properties (Access = private)
         % Existing properties
         t_prev = -1;
