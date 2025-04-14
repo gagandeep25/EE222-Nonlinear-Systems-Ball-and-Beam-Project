@@ -30,6 +30,8 @@ function x_hat = luenberger_observer(delta_t, x_hat_prev, y, u, x_op)
     LO = zeros(4,2); %Luenberger gain
     %LO = Ll;
     LO =[[  25.1320,  -0.5331]; [ 151.9416,  -6.4568]; [  -1.2948, -10.1320]; [  32.6879, 619.3871]];
+    %LO =[[ 35.1385,  -0.9951]; [ 302.7894,  -18.0609]; [  -0.9212, 0.8615]; [  18.3466, 376.8570]];
+
     C = [[1, 0, 0, 0]; [0, 0, 1, 0]]; %selects position and theta
     %observer_poles = [-10,-12,-15,-18];
     %LO = place(A',C',observer_poles);
