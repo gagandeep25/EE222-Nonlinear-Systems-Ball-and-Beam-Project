@@ -7,9 +7,9 @@
  *
  * Code generation for model "simulink_experiment_debug_type1".
  *
- * Model version              : 13.1
+ * Model version              : 13.2
  * Simulink Coder version : 9.8 (R2022b) 13-May-2022
- * C source code generated on : Mon Apr 14 15:07:44 2025
+ * C source code generated on : Mon Apr 21 15:07:09 2025
  *
  * Target selection: quarc_win64.tlc
  * Note: GRT includes extra infrastructure and instrumentation for prototyping
@@ -21,22 +21,24 @@
 #ifndef RTW_HEADER_simulink_experiment_debug_type1_types_h_
 #define RTW_HEADER_simulink_experiment_debug_type1_types_h_
 #include "rtwtypes.h"
-#ifndef struct_tag_Xr4I6465OIRXunyx4oSpq
-#define struct_tag_Xr4I6465OIRXunyx4oSpq
+#ifndef struct_tag_nMbvhz1rQO3iurRnLnfOEH
+#define struct_tag_nMbvhz1rQO3iurRnLnfOEH
 
-struct tag_Xr4I6465OIRXunyx4oSpq
+struct tag_nMbvhz1rQO3iurRnLnfOEH
 {
   real_T t_prev;
   real_T x_hat_prev[4];
-  real_T theta_d;
+  real_T e_prev;
+  real_T e_integral;
+  real_T u_prev;
 };
 
-#endif                                 /* struct_tag_Xr4I6465OIRXunyx4oSpq */
+#endif                                 /* struct_tag_nMbvhz1rQO3iurRnLnfOEH */
 
 #ifndef typedef_studentControllerInterface_si_T
 #define typedef_studentControllerInterface_si_T
 
-typedef struct tag_Xr4I6465OIRXunyx4oSpq studentControllerInterface_si_T;
+typedef struct tag_nMbvhz1rQO3iurRnLnfOEH studentControllerInterface_si_T;
 
 #endif                             /* typedef_studentControllerInterface_si_T */
 
