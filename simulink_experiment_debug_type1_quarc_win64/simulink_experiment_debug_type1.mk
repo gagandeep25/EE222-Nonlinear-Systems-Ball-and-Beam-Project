@@ -2,7 +2,7 @@
 ## Makefile generated for component 'simulink_experiment_debug_type1'. 
 ## 
 ## Makefile     : simulink_experiment_debug_type1.mk
-## Generated on : Mon Apr 21 15:07:24 2025
+## Generated on : Mon Apr 28 14:51:33 2025
 ## Final product: $(RELATIVE_PATH_TO_ANCHOR)\simulink_experiment_debug_type1.rt-win64
 ## Product type : executable
 ## 
@@ -23,7 +23,7 @@ MAKEFILE                  = simulink_experiment_debug_type1.mk
 MATLAB_ROOT               = C:\PROGRA~1\MATLAB\R2022b
 MATLAB_BIN                = C:\PROGRA~1\MATLAB\R2022b\bin
 MATLAB_ARCH_BIN           = $(MATLAB_BIN)\win64
-START_DIR                 = C:\Users\gagandeep_goru\EE222-Nonlinear-Systems-Ball-and-Beam-Project
+START_DIR                 = \\fileservice1\sp25\yuneily\Documents\MATLAB\EE222-Nonlinear-Systems-Ball-and-Beam-Project
 SOLVER                    = 
 SOLVER_OBJ                = 
 CLASSIC_INTERFACE         = 1
@@ -188,7 +188,7 @@ INCLUDES = $(INCLUDES_BUILDINFO)
 
 DEFINES_BUILD_ARGS = -DCLASSIC_INTERFACE=1 -DALLOCATIONFCN=0 -DEXT_MODE=1 -DMAT_FILE=0 -DONESTEPFCN=0 -DTERMFCN=1 -DMULTI_INSTANCE_CODE=0 -DINTEGER_CODE=0 -DMT=1
 DEFINES_CUSTOM = 
-DEFINES_OPTS = -DON_TARGET_WAIT_FOR_START=1 -DTID01EQ=1
+DEFINES_OPTS = -DON_TARGET_WAIT_FOR_START=0 -DTID01EQ=1
 DEFINES_STANDARD = -DMODEL=simulink_experiment_debug_type1 -DNUMST=3 -DNCSTATES=0 -DHAVESTDIO -DRT -DUSE_RTMODEL
 
 DEFINES = $(DEFINES_BUILD_ARGS) $(DEFINES_CUSTOM) $(DEFINES_OPTS) $(DEFINES_STANDARD)
