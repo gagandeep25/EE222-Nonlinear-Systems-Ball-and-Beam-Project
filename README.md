@@ -48,6 +48,9 @@ https://github.com/user-attachments/assets/5c26c1ae-1474-46c9-917f-32cfcda8475b
 
 
 **Hardware Testing Video**
-https://github.com/gagandeep25/EE222-Nonlinear-Systems-Ball-and-Beam-Project/blob/main/hardware-testing-video.mp4
+
+![hardware-testing-video-ezgif com-optimize (1)](https://github.com/user-attachments/assets/3a895a02-a2d1-4945-be91-dbf53a46a391)
+
+(original video [here](https://github.com/gagandeep25/EE222-Nonlinear-Systems-Ball-and-Beam-Project/blob/main/hardware-testing-video.mp4))
 
 
