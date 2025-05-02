@@ -4,7 +4,7 @@ classdef studentControllerInterface < matlab.System
         % For more information of the supported data type, see
         % https://www.mathworks.com/help/simulink/ug/data-types-supported-by-simulink.html
         t_prev = -1;
-        x_hat_prev = [0; 0.00; -pi/3; 0]; % initial condition
+        x_hat_prev = [0; 0.00; -pi/3; 0]; % initial condition for hardware
         %x_hat_prev = [-0.05; 0.00; 0; 0];
         u_prev = 0;
         theta_d = 0;

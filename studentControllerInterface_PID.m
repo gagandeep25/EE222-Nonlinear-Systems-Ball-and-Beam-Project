@@ -3,7 +3,7 @@ classdef studentControllerInterface < matlab.System
     properties (Access = private)
         % Existing properties
         t_prev = -1;
-        x_hat_prev = [0; 0.00; -pi/3; 0];
+        x_hat_prev = [0; 0.00; -pi/3; 0]; % initial condition for hardware
         theta_d = 0;
         extra_dummy1 = 0;
         extra_dummy2 = 0;
@@ -76,7 +76,7 @@ classdef studentControllerInterface < matlab.System
             V_servo = k_servo * (theta_d - theta);
             lb = -1;
             ub = 1;
-            if V_servo < 0
+            if V_servo > 0
                 V_servo = V_servo - 0.6;
             else
                 V_servo = V_servo + 0.6;
