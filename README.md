@@ -1,9 +1,9 @@
 **Git organization:**
 This repo contains four branches - main, simulation-testing, hardware-testing, svps-expts
-main: has the final code that we used for hardware experiments, based on which the hardware results are reported
-simulation-testing: has the final code that we used for simulation experiments, based on which the simulation results are reported
-hardware-testing: the code is same as the main branch
-svps-experiments: we used this branch for experimentation with the controllers, can be safely ignored
+- main: has the final code that we used for hardware experiments, based on which the hardware results are reported
+- simulation-testing: has the final code that we used for simulation experiments, based on which the simulation results are reported
+- hardware-testing: the code is same as the main branch
+- svps-experiments: we used this branch for experimentation with the controllers, can be safely ignored
 
 **Results Summary:**
 
