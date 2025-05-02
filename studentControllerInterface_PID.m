@@ -34,9 +34,10 @@ classdef studentControllerInterface < matlab.System
             % k_p: Proportional gain (increases response speed but too high may lead to instability). 15
             % k_i: Integral gain (reduces steady-state error; too high may cause overshoot). 0.75
             % k_d: Derivative gain (dampens the response; too high may lead to noise sensitivity). 40
-            k_p = 2;   % Proportional gain (ADJUST) 80, 60
-            k_i = 0.4;   % Integral gain (ADJUST) 
-            k_d = 0; % Derivative gain (ADJUST)40
+            
+            k_p = 2;   % Proportional gain
+            k_i = 0.4;   % Integral gain
+            k_d = 0; % Derivative gain
             
             % Compute the time step (dt) and handle the first iteration.
             if obj.t_prev < 0
