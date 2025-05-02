@@ -9,29 +9,14 @@ function x_hat = luenberger_observer(delta_t, x_hat_prev, y, u, x_op)
     A = compute_jacobian_A(x_op);
     B = compute_jacobian_B();
 
-
-    % Compute the Jacobians
-%     [~, A] = jaccsd(@(x) ball_and_beam_dynamics(0, x, u_op), x_op);
-%     [~, B] = jaccsd(@(u) ball_and_beam_dynamics(0, x_op, u), u_op);
-
-    % Output equations (assuming we measure p_ball and theta)
-    h = @(x) [x(1); x(3)];
-    [~, C] = jaccsd(h, x_op);
-    D = zeros(2, 1); % No direct feedthrough
-    G = eye(4);
-
-    % Covariance matrices
-    Q = [10, 0, 0, 0; 0, 100, 0, 0; 0, 0, 10, 0; 0, 0, 0, 100];%eye(4) * 10; % Process noise covariance
-    R = eye(2) * 0.1; % Measurement noise covariance
-    P = eye(4);
-    sys = ss(A,[B G],C,[D zeros(2, 4)]);
-    [kalmf,Ll,P] = kalman(sys,Q,R);
-
     LO = zeros(4,2); %Luenberger gain
-    LO = Ll;
-    %LO =[[  25.1320,  -0.5331]; [ 151.9416,  -6.4568]; [  -1.2948, -10.1320]; [  32.6879, 619.3871]];
-    C = [[1, 0, 0, 0]; [0, 0, 1, 0]]; %selects position and theta
+    %LO = Ll;
+    LO =[[  25.1320,  -0.5331]; [ 151.9416,  -6.4568]; [  -1.2948, -10.1320]; [  32.6879, 619.3871]];
+    %LO =[[ 35.1385,  -0.9951]; [ 302.7894,  -18.0609]; [  -0.9212, 0.8615]; [  18.3466, 376.8570]];
 
+    C = [[1, 0, 0, 0]; [0, 0, 1, 0]]; %selects position and theta
+    %observer_poles = [-10,-12,-15,-18];
+    %LO = place(A',C',observer_poles);
     g = 9.81;
     r_arm = 0.0254;
     L = 0.4255;

@@ -1,0 +1,10 @@
+
+LQR
+
+Average Tracking Error: 0.0002 
+Average Energy Consumption: 0.1443 
+Safety Contraint Violation: 0 
+Tracking Cost: 0.27 
+Energy Cost: 1.30 
+Safety Cost: 0.00 
+Total Score: 1.57 
